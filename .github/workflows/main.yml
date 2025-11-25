@@ -18,7 +18,7 @@ jobs:
           DAY=$(date -u +"%d")
           MONTH=$(date -u +"%m")
 
-          STAGE=0
+          STAGE=2
 
           if [ "$MONTH" -eq 12 ]; then
             if [ "$DAY" -ge 1 ]; then STAGE=0; fi
