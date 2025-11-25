@@ -1,7 +1,7 @@
 const letterText = `
 My love,
 
-[WRITE YOUR LETTER HERE]
+[WRITE LETTER]
 
 Merry Christmas, Ky.
 

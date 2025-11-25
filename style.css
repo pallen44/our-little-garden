@@ -8,17 +8,26 @@ body {
     overflow-x: hidden;
 }
 
-.texture {
+
+/* Snowflakes */
+.snowflake {
     position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
+    top: -10px;
+    color: white;
+    font-size: 1rem;
+    opacity: 0.8;
     pointer-events: none;
-    background: url('assets/texture.png'); /* light paper texture */
-    opacity: 0.18;
-    mix-blend-mode: multiply;
-    z-index: 1;
+    animation: fall linear infinite;
+    z-index: 5;
+}
+
+@keyframes fall {
+    0% { transform: translateY(0); opacity: 0.8; }
+    100% { transform: translateY(110vh); opacity: 0; }
+}
+
+.vignette, .texture, .bg-scenery, .glow, .fade-bottom {
+    pointer-events: none;
 }
 
 .vignette {
@@ -27,63 +36,21 @@ body {
     left: 0;
     width: 100%;
     height: 100%;
-    pointer-events: none;
     box-shadow: inset 0 0 150px rgba(0,0,0,0.25);
     z-index: 2;
 }
 
-.particle {
-    position: fixed;
-    width: 124px;
-    height: 124px;
-    background: url('assets/particle.png') no-repeat center/contain;
-    opacity: 0.4;
-    pointer-events: none;
-    animation: drift 18s linear infinite;
-    z-index: 2;
-}
-
-@keyframes drift {
-    0% { transform: translateY(0) rotate(0deg); opacity: 0.5; }
-    100% { transform: translateY(120vh) rotate(180deg); opacity: 0; }
-}
-
 .bg-scenery {
     position: fixed;
-    bottom: 0;
-    width: 100%;
-    height: 40vh;
-    background: url('assets/background.png') bottom center/cover no-repeat;
-    opacity: 0.55;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: url('assets/background.png') center center/cover no-repeat;
+    opacity: 1;
     z-index: 0;
     filter: blur(1px) brightness(0.85);
 }
-
-
-.container {
-    width: 90%;
-    max-width: 420px;
-    margin: auto;
-}
-
-h1 {
-    font-weight: 400;
-    letter-spacing: 1px;
-    margin-bottom: 20px;
-}
-
-#plant-image {
-    width: 250px;
-    position: relative;
-    z-index: 3;
-    animation: floaty 6s ease-in-out infinite;
-    filter: drop-shadow(0 6px 20px rgba(0,0,0,0.18));
-    border-radius: 12px;
-    mix-blend-mode: multiply;
-    filter: drop-shadow(0 0 30px rgba(255,255,255,0.25))
-            drop-shadow(0 6px 20px rgba(0,0,0,0.18));
-}
-
 
 .glow {
     position: fixed;
@@ -93,11 +60,27 @@ h1 {
     height: 500px;
     background: radial-gradient(circle, rgba(255,255,255,0.6) 0%, rgba(255,255,255,0) 70%);
     transform: translate(-50%, -50%);
-    pointer-events: none;
     z-index: 0;
     opacity: 0.4;
 }
 
+.container {
+    width: 90%;
+    max-width: 420px;
+    margin: 80px auto 200px auto;
+    position: relative;
+    z-index: 10;
+}
+
+/* Plant image */
+#plant-image {
+    width: 300px;
+    animation: floaty 6s ease-in-out infinite;
+    border-radius: 12px;
+    filter: drop-shadow(0 0 30px rgba(255,255,255,0.25))
+            drop-shadow(0 6px 20px rgba(0,0,0,0.18));
+    z-index: 10;
+}
 
 @keyframes floaty {
     0% { transform: translateY(0); }
@@ -106,103 +89,44 @@ h1 {
 }
 
 
-#plant-image:hover {
-    transform: scale(1.05);
-}
 
-#message {
-    position: relative;
-    z-index: 3;
-    font-size: 1.25rem;
-    margin-top: 25px;
-    opacity: 0;
-    animation: fadeIn 1.6s forwards;
-    max-width: 320px;
-    margin-left: auto;
-    margin-right: auto;
-    color: #3e3b38;
-    font-style: italic;
-    text-shadow: 0 1px 3px rgba(255,255,255,0.3);
-}
-
-
-@keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
-}
-
-.sparkle {
-    position: fixed;
-    width: 5px;
-    height: 5px;
-    background: radial-gradient(#ffffff, transparent 70%);
-    border-radius: 50%;
-    pointer-events: none;
-    opacity: 0.8;
-    z-index: 2;
-    animation: sparkleFloat 7s linear infinite;
-}
-
-@keyframes sparkleFloat {
-    0% { transform: translateY(0) scale(1); opacity: 0.9; }
-    100% { transform: translateY(-120vh) scale(0.3); opacity: 0; }
-}
-
-.fade-bottom {
-    position: fixed;
-    bottom: 0;
-    width: 100vw;
-    height: 100px;
-    background: linear-gradient(transparent, rgba(255,255,255,0.7));
-    pointer-events: none;
-    z-index: 3;
-}
-
-#countdown {
-    position: relative;
-    z-index: 3;
-    margin-top: 10px;
-    font-size: 1.1rem;
-    color: #4a4642;
-    opacity: 0;
-    animation: fadeIn 2s forwards;
-    font-style: italic;
-}
-
+/* Countdown box */
 #countdown-box {
     position: relative;
     z-index: 3;
-    margin: 20px auto;
-    padding: 15px 20px;
-    width: 260px;
-    background: rgba(255, 255, 255, 0.65);
+    margin: 30px auto;
+    padding: 18px 20px;  
+    width: 280px;
+    background: #e3d4b1;
     backdrop-filter: blur(4px);
-    border-radius: 14px;
+    border-radius: 16px;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.18);
     animation: fadeIn 1.6s forwards;
+    text-align: center;
 }
 
 #countdown-title {
-    font-size: 1rem;
+    font-size: 1.1rem;
     font-style: italic;
-    margin-bottom: 6px;
+    margin-bottom: 10px; 
     color: #3f3a35;
 }
 
 #countdown-value {
-    font-size: 1.1rem;
-    margin-bottom: 10px;
+    font-size: 1.3rem; 
+    margin-bottom: 14px; 
     font-weight: 500;
+    color: #443f3a;
 }
 
 #toggle-btn {
     border: none;
-    padding: 6px 12px;
-    border-radius: 10px;
+    padding: 8px 14px;
+    border-radius: 12px;
     background: #ece7db;
     color: #4a4642;
     cursor: pointer;
-    font-size: 0.9rem;
+    font-size: 0.95rem;
     transition: 0.25s ease;
 }
 
@@ -211,6 +135,32 @@ h1 {
     transform: scale(1.05);
 }
 
+
+/* 🎁 Christmas button */
+#christmas-btn {
+    display: none;
+    margin: -30px auto;
+    padding: 12px 18px;
+    font-size: 1.2rem;
+    background: #e3d4b1;
+    border-radius: 12px;
+    border: 1px solid #d3cbb8;
+    cursor: pointer;
+    z-index: 10;
+}
+
+#christmas-btn:hover {
+    background: #ede7d9;
+    transform: scale(1.05);
+}
+
+/* Fade out transition */
+.fade-out {
+    opacity: 0;
+    transition: opacity 2s ease;
+}
+
+/* attribution */
 .attribution {
     font-size: 10px;
     opacity: 0.4;
@@ -223,4 +173,51 @@ h1 {
 .attribution a {
     color: #4a4642;
     text-decoration: none;
+}
+
+/* Title Box */
+#title-box {
+    position: relative;
+    z-index: 4;
+    width: 260px;
+    margin: 0 auto 20px auto;
+    background: #e3d4b1;
+    backdrop-filter: blur(4px);
+    border-radius: 14px;
+    padding: 10px 18px;
+    box-shadow: 0 4px 18px rgba(0,0,0,0.20);
+    animation: fadeIn 1.6s forwards;
+}
+
+#title-box h1 {
+    margin: 0;
+    color: #2e4f3a;
+    font-size: 1.6rem;
+    font-weight: 500;
+}
+
+
+/* Message Box */
+#message-box {
+    min-height: 60px;
+    position: relative;
+    z-index: 4;
+    width: 300px;
+    margin: 20px auto;
+    background: #e3d4b1;
+    backdrop-filter: blur(4px);
+    border-radius: 16px;
+    padding: 16px 20px;
+    box-shadow: 0 4px 18px rgba(0,0,0,0.18);
+    animation: fadeIn 1.6s forwards;
+}
+
+#message-box p {
+    margin: 0;
+    font-size: 1.25rem;
+    line-height: 1.45;
+    color: #3f3a35;
+    font-weight: 500;
+    font-style: italic;
+    text-shadow: 0 1px 3px rgba(255,255,255,0.4);
 }

@@ -9,30 +9,31 @@
 
 <body>
     <div class="bg-scenery"></div>
-    <div class="texture"></div>
     <div class="vignette"></div>
     <div class="glow"></div>
 
-    <div class="container">
-        <h1>Our Little Garden</h1>
-        <img id="plant-image" src="assets/stage0.png" alt="plant">
-        <p id="message"></p>
+    <!-- SNOW WILL BE GENERATED IN JS -->
 
+    <div class="container">
+        <div id="title-box">
+            <h1>Our Little Garden</h1>
+        </div>
+
+        <img id="plant-image" src="assets/stage0.png" alt="plant">
+        <div id="message-box">
+            <p id="message"></p>
+        </div>
         <div id="countdown-box">
             <div id="countdown-title">Countdown → Next Growth 🌱</div>
             <div id="countdown-value">Loading...</div>
             <button id="toggle-btn">Switch to Christmas 🎄</button>
         </div>
-    </div>
 
-    <div class="fade-bottom"></div>
+        <button id="christmas-btn">
+            Open Your Christmas Surprise 🎁
+        </button>
+    </div>
 
     <script src="script.js"></script>
-    <div class="attribution">
-        <a href="https://www.vecteezy.com/free-vector/growing-plant" target="_blank">
-            Growing Plant Vectors by Vecteezy
-        </a>
-    </div>
-
 </body>
 </html>
