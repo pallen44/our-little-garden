@@ -8,10 +8,8 @@ message, counting down toward Christmas morning.
 - 7 unlockable growth stages  
 - Live countdown (next stage + Christmas toggle)  
 - Soft animated background  
-- Floating sparkles + drifting particles  
-- Parallax scenery  
+- Falling snowflakes
 - Custom messages for each stage  
-- A final letter that unlocks on December 25
 
 ## Tech Stack
 - HTML  
